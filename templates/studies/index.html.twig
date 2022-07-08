@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Studies index{% endblock %}
+
+{% block body %}
+    <h1>Studies index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for study in studies %}
+            <tr>
+                <td>{{ study.title }}</td>
+                <td>{{ study.description }}</td>
+                <td>{{ study.image }}</td>
+                <td>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_studies_new') }}">Create new</a>
+{% endblock %}

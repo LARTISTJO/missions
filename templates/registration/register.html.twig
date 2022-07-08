@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer son compte{% endblock %}
+
+{% block extrastyles %}
+    <style>
+        body { background-image: linear-gradient(to bottom right , #EADEDA, #6B0504)}
+        .bgform { background-image: linear-gradient( to bottom right , #D2E4C4, #78A1BB)}
+        a, .btn  { font-size: 1.3rem; color: #002626}
+    </style>
+{% endblock %}
+
+{% block body %}
+    <div>
+        <div class="row justify-content-center">
+            <div class="col-xl-5 col-md-10 bgform p-4 mb-5">
+                <h1 class="text-center">Création de Compte</h1>
+                {{ form_start(registrationForm) }}
+                <div class="row">
+                    <div class="col">
+                        {{ form_row(registrationForm.lastname, {'attr': {'placeholder': 'b'}}) }}
+                    </div>
+                    <div class="col">
+                        {{ form_row(registrationForm.firstname) }}
+                    </div>
+                </div>
+                <div class="row">
+                    {{ form_row(registrationForm.email.first) }}
+                    {{ form_row(registrationForm.email.second) }}
+                    {{ form_row(registrationForm.password.first) }}
+                    {{ form_row(registrationForm.password.second) }}
+                </div>
+                <button type="submit" class=" btn btn-light mx-auto d-block mt-2 mb-2">Créer compte</button>
+                {{ form_end(registrationForm) }}
+                <a href="{{ path('app_login') }}">Vous avez déjà un compte</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

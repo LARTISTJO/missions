@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Bienvenue à vous!{% endblock %}
+
+{% block body %}
+
+    <style>
+        .figure { display:flex; flex-flow: column; width: 20em; height: 20em; margin: auto}
+    </style>
+    <h1 class="d-flex justify-content-center mb-5">Bienvenue sur la page d'accueil !</h1>
+    <div class=" d-flex text-center justify-content-center">
+        {% for theme in themes %}
+            <figure class="figure col-xl-4">
+                <a href="{{ path('show_studies_by', {'id' :theme.id}) }} ">
+                    <img class="figure-img rounded " src="images/uploads/{{ theme.image }}" alt="{{ theme.image }}">
+                    <figcaption class="justify-content-center">
+                        <h3>{{ theme.title | raw }}</h3>
+                        <p>{{ theme.description | raw}}</p>
+                    </figcaption>
+                </a>
+            </figure>
+        {% endfor %}
+    </div>
+{% endblock %}

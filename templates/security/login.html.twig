@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+
+{% block body %}
+    <style>
+        body { background-image: linear-gradient(to bottom right , #EADEDA, #B0413E)}
+        .bgform {background-color: #D2E4C4}
+        .btn, a { font-size: 1.2rem; color: #002626}
+    </style>
+
+    <div class="login_register_wrap section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-6 col-md-10 bgform p-5 mb-5">
+                    <h1 class="text-center">Connexion</h1>
+                    <form method="post">
+                        {% if app.user %}
+                            <div class="mb-3">
+                                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                            </div>
+                        {% endif %}
+                        <div class="message-flash">
+                            {% if error %}
+                                <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                            {% endif %}
+                        </div>
+                        <div class="row">
+                            <label for="inputEmail">Email</label>
+                            <input type="email" value="{{ last_username }}" name="email" placeholder="" id="inputEmail" class="form-control mt-2 mb-3" autocomplete="email" required autofocus>
+                            <label for="inputPassword">Mot de passe</label>
+                            <input type="password" name="password" id="inputPassword" class="form-control mt-2 mb-3" autocomplete="current-password" required>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-md mx-auto d-block mt-2 mb-2 " name="login">Connexion</button>
+                        </div>
+                    </form>
+                    <a href="{{ path('app_register') }}">Vous n'avez pas encore de compte</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

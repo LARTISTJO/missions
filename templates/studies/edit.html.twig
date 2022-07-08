@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier Études{% endblock %}
+
+{% block body %}
+    <h1>Modifier Études</h1>
+
+    {{ include('studies/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+
+    {{ include('studies/_delete_form.html.twig') }}
+{% endblock %}

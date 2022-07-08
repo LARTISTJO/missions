@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer études{% endblock %}
+
+{% block body %}
+    <h1>Créer de nouvelles Études</h1>
+
+    {{ include('studies/_form.html.twig') }}
+
+    <a href="{{ path('app_studies_index') }}">Liste des études</a>
+
+{% endblock %}

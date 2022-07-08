@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Themes{% endblock %}
+
+        {% block extrastyles %}
+        <style>
+            #form{display:none;}
+            #form:target{display:block;}
+        </style>
+        {% endblock %}
+{% block body %}
+    <h1>Études</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Title</th>
+            <td>{{ study.title }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ study.description | raw }}</td>
+        </tr>
+        <tr>
+            <th>Image</th>
+            <td>
+                <img class="figure-img rounded " src="/images/uploads/{{ study.image }}" alt="{{ study.image }}">
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    {{ include('studies/_delete_form.html.twig') }}
+{% endblock %}
+

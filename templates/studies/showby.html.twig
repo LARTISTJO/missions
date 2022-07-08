@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Bienvenue à vous!{% endblock %}
+
+{% block body %}
+    <style>
+        .figure { display: flex; flex-flow: column; height: 20em; width: 20em; margin: auto}
+   </style>
+
+    <h1 class=" d-flex justify-content-center mb-5">Voici les études proposées pour ce thème !</h1>
+    <div class="d-flex justify-content-center ">
+        <div class="text-center justify-content-evenly">
+            {% for study in studies %}
+                <figure class="figure col-xl-4">
+                    <img class="figure-img rounded " src="/images/uploads/{{ study.image }}" alt="{{ study.image }}">
+                    <figcaption class=" justify-content-center ">
+                        <h3> {{ study.title | raw }}</h3>
+                        <p>{{ study.description | raw}}</p>
+                    </figcaption>
+                </figure>
+                <a href="{{ path('app_studies_show', {'id': study.id}) }}">Plus d'informations</a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
