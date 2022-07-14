@@ -2,11 +2,22 @@
 
 {% block title %} Bienvenue à vous!{% endblock %}
 
+
 {% block body %}
+
+    <!--suppress ALL -->
 
     <style>
         .figure { display:flex; flex-flow: column; width: 20em; height: 20em; margin: auto}
+        img { width: 12em; height: 12em}
+        .carousel-inner img { width: 100%; height: auto}
+        .carousel {height: 260px; opacity: .8; background: rgba(0, 0, 0, 0.5);}
+        .carousel-item,
+        .carousel-inner {height: 100%;width: auto;}
+        .carousel-item {text-align: center;}
+
     </style>
+    {% include "partials/_carousel.html.twig" %}
     <h1 class="d-flex justify-content-center mb-5">Bienvenue sur la page d'accueil !</h1>
     <div class=" d-flex text-center justify-content-center">
         {% for theme in themes %}
@@ -16,6 +27,20 @@
                     <figcaption class="justify-content-center">
                         <h3>{{ theme.title | raw }}</h3>
                         <p>{{ theme.description | raw}}</p>
+                    </figcaption>
+                </a>
+            </figure>
+        {% endfor %}
+    </div>
+
+    <div class=" mt-4 d-flex text-center justify-content-center">
+        {% for study in studies %}
+            <figure class="figure col-xl-4">
+                <a href="{{ path('show_studies_by', {'id' :study.id}) }} ">
+                    <img class="figure-img rounded " src="images/uploads/{{ study.image }}" alt="{{ study.image }}">
+                    <figcaption class="justify-content-center">
+                        <h3>{{ study.title | raw }}</h3>
+                        <p>{{ study.description | raw}}</p>
                     </figcaption>
                 </a>
             </figure>

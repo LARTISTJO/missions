@@ -1,6 +1,40 @@
 @import "normalize";
 @import "~bootstrap/scss/bootstrap";
+$font-stack: Roboto Light;
 
 a { text-decoration: none}
 img { width: 20em; height: 20em}
+button{text-transform: uppercase;}
+
+body {
+  font-family: $font-stack;
+
+  background-color: white;
+  height: 120vh;
+}
+
+.nav-link {color: #f1f2f3}
+
+nav{ background: 	#006400 ; background-attachment: fixed;}
+
+.lightgreen { background: #D2E4C4; color: #303030 }
+
+p {
+  color: darken(#ccc, 10%);
+  font-weight: 300;
+}
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: $font-stack;
+}
+a {
+  transition: .3s all ease;
+  &, &:hover {
+    text-decoration: none!important;
+  }
+}
+
+
+
+
 

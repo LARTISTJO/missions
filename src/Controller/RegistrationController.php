@@ -5,20 +5,14 @@ namespace App\Controller;
 use App\Entity\Professor;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
-use App\Repository\ProfessorRepository;
 use App\Security\AppAuthenticator;
-use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
-use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
 
 class RegistrationController extends AbstractController
 {
@@ -32,6 +26,8 @@ class RegistrationController extends AbstractController
     {
         $user = new User();
         $user->setRoles(['ROLE_USER']);
+        $professor =new Professor();
+        $user->setProfessor($professor);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
@@ -45,10 +41,12 @@ class RegistrationController extends AbstractController
             );
 
             $entityManager->persist($user);
+            $entityManager->persist($professor);
             $entityManager->flush();
 
             return $userAuthenticator->authenticateUser(
                 $user,
+                $professor,
                 $authenticator,
                 $request
             );

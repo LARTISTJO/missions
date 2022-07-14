@@ -1,0 +1,31 @@
+
+
+<div id="carouselExampleCaptions" class="carousel slide mt-0" data-bs-ride="carousel" >
+    <ol class="carousel-indicators">
+        {% for theme in themes %}
+            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ loop.index-1 }}" class="{{ loop.first ? 'active': '' }} "></li>
+        {% endfor %}
+    </ol>
+    <div class="carousel-inner">
+        {% for theme in themes %}
+            <div class="carousel-item {{ loop.first ? 'active': '' }} ">
+                <img src="images/uploads/{{ theme.image }}" alt="{{ theme.image }}" class="d-block w-100 img-fluid">
+                <div class="carousel-caption d-none d-md-block my-bg-primary text-white">
+                    <h5 class="text"> {{ theme.title  }}</h5>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Précédent</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Suivant</span>
+    </a>
+
+
+</div>
+

@@ -6,24 +6,18 @@
         <title>{% block title %}Bienvenue!{% endblock %}</title>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            <style>
-                body { min-height: 100vh}
-                body { background-color: #5eb5e0}
-                a:link {text-decoration: none}
-            </style>
+
             {{ encore_entry_link_tags('app') }}
         {% endblock %}
 
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('nav') }}
         {% endblock %}
         {% block extrastyles %}{% endblock %}
     </head>
     <body>
     {% include "partials/header.html.twig" %}
-
-    <div class="container-fluid">
         {% block body %}{% endblock %}
-    </div>
     </body>
     </html>
