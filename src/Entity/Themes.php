@@ -28,8 +28,9 @@ class Themes
     #[ORM\JoinColumn(nullable: false)]
     private $themecreator;
 
-    #[ORM\ManyToMany(targetEntity: Studies::class, mappedBy: 'studytheme')]
+    #[ORM\OneToMany(mappedBy: 'studytheme', targetEntity: Studies::class)]
     private $studies;
+
 
     public function __construct()
     {
@@ -105,7 +106,7 @@ class Themes
     {
         if (!$this->studies->contains($study)) {
             $this->studies[] = $study;
-            $study->addStudytheme($this);
+            $study->setStudytheme($this);
         }
 
         return $this;
@@ -114,9 +115,14 @@ class Themes
     public function removeStudy(Studies $study): self
     {
         if ($this->studies->removeElement($study)) {
-            $study->removeStudytheme($this);
+            // set the owning side to null (unless already changed)
+            if ($study->getStudytheme() === $this) {
+                $study->setStudytheme(null);
+            }
         }
 
         return $this;
     }
+
+
 }

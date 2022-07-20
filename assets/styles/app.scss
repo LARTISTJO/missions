@@ -8,16 +8,15 @@ button{text-transform: uppercase;}
 
 body {
   font-family: $font-stack;
-
-  background-color: white;
+  background-color: #eef4fe;
   height: 120vh;
 }
 
 .nav-link {color: #f1f2f3}
 
-nav{ background: 	#006400 ; background-attachment: fixed;}
+nav{ background: #0d74d3; background-attachment: fixed;}
 
-.lightgreen { background: #D2E4C4; color: #303030 }
+.lightgreen { background: #f2f2f2; color: #303030 }
 
 p {
   color: darken(#ccc, 10%);

@@ -8,8 +8,8 @@
     <!--suppress ALL -->
 
     <style>
-        .figure { display:flex; flex-flow: column; width: 20em; height: 20em; margin: auto}
-        img { width: 12em; height: 12em}
+        .card, .titre {  margin-left: 8px;}
+        img{ width: 16rem; height: 12rem}
         .carousel-inner img { width: 100%; height: auto}
         .carousel {height: 260px; opacity: .8; background: rgba(0, 0, 0, 0.5);}
         .carousel-item,
@@ -17,33 +17,26 @@
         .carousel-item {text-align: center;}
 
     </style>
-    {% include "partials/_carousel.html.twig" %}
     <h1 class="d-flex justify-content-center mb-5">Bienvenue sur la page d'accueil !</h1>
-    <div class=" d-flex text-center justify-content-center">
         {% for theme in themes %}
-            <figure class="figure col-xl-4">
+            <div class=" d-flex justify-content-start titre col-md-2  text-center">
                 <a href="{{ path('show_studies_by', {'id' :theme.id}) }} ">
-                    <img class="figure-img rounded " src="images/uploads/{{ theme.image }}" alt="{{ theme.image }}">
-                    <figcaption class="justify-content-center">
-                        <h3>{{ theme.title | raw }}</h3>
-                        <p>{{ theme.description | raw}}</p>
-                    </figcaption>
+                        <h2>{{ theme.title | raw }}</h2>
                 </a>
-            </figure>
+            </div>
+            <div class=" d-flex align-items-center justify-content-start">
+                    {% for study in studies %}
+                        {% if theme.title == study.studytheme %}
+                            <div class="card text-center mb-5 " style="width: 16rem;">
+                                <a href="{{ path('app_studies_show', {'id' :study.id}) }} ">
+                                    <img class="card-img-top" src="images/uploads/{{ study.image }}" alt="{{ study.image }}">
+                                    <div class="card-body ">
+                                        <h4 class="card-text ">{{ study.title | raw }}</h4>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+            </div>
         {% endfor %}
-    </div>
-
-    <div class=" mt-4 d-flex text-center justify-content-center">
-        {% for study in studies %}
-            <figure class="figure col-xl-4">
-                <a href="{{ path('show_studies_by', {'id' :study.id}) }} ">
-                    <img class="figure-img rounded " src="images/uploads/{{ study.image }}" alt="{{ study.image }}">
-                    <figcaption class="justify-content-center">
-                        <h3>{{ study.title | raw }}</h3>
-                        <p>{{ study.description | raw}}</p>
-                    </figcaption>
-                </a>
-            </figure>
-        {% endfor %}
-    </div>
 {% endblock %}

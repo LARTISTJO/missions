@@ -5,8 +5,7 @@
 
 {% block body %}
     <style>
-        body { background-image: linear-gradient(to bottom right , #EADEDA, #B0413E)}
-        .bgform {background-color: #D2E4C4}
+        .bgform {background-color: #76b3fc}
         .btn, a { font-size: 1.2rem; color: #002626}
     </style>
 
@@ -34,7 +33,7 @@
                         </div>
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-md mx-auto d-block mt-2 mb-2 " name="login">Connexion</button>
+                            <button type="submit" class="btn btn-light btn-md mx-auto d-block mt-2 mb-2 " name="login">Connexion</button>
                         </div>
                     </form>
                     <a href="{{ path('app_register') }}">Vous n'avez pas encore de compte</a>

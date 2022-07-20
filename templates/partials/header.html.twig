@@ -1,11 +1,11 @@
 <style>
     header { margin-bottom: 100px }
-    .nav-link:hover { background-color: #568259; color: #FFFFFF }
+    .nav-link:hover { background-color: #76b3fc; color: #FFFFFF }
 </style>
 
 <header>
     <nav class="d-flex fixed-top">
-        <h3 class="nav nav-tabs justify-content-start col-md-3" id="nav-tab" role="tablist"><a class="nav-link " href="">L'École</a></h3>
+        <h3 class="nav nav-tabs justify-content-start col-md-3 fw-bolder fs-2" id="nav-tab" role="tablist"><a class="nav-link " href="">L'École</a></h3>
         <div class="nav nav-tabs justify-content-end col-md-9 " id="nav-tab" role="tablist">
             <a class="align-self-center" href="{{ path('app_home') }}">
                 <button class="nav-link " id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Accueil</button>
@@ -19,13 +19,18 @@
                 <a class="align-self-center" href="{{ path('app_themes_new') }}">
                     <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Créer thème</button>
                 </a>
-            {% endif %}
-            {% if is_granted("ROLE_CREATOR") %}
                 <a class="align-self-center" href="{{ path('app_studies_new') }}">
                     <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Créer étude</button>
                 </a>
             {% endif %}
-            {% if app.user  %}
+            {% if is_granted("ROLE_PROFESSOR") %}
+                <a class="align-self-center" href="{{path('app_professor_show', {'id': app.user.id })}}">
+                    <button class="nav-link " id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Mon compte</button>
+                </a>
+                <a class="align-self-center" href="{{ path('app_logout') }}">
+                    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Déconnexion</button>
+                </a>
+            {% elseif is_granted("ROLE_USER") %}
                 <a class="align-self-center" href="{{ path('app_user_show', {'id': app.user.id }) }}">
                     <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Mon compte</button>
                 </a>

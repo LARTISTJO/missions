@@ -30,6 +30,7 @@ class RegistrationControllerProfessor extends AbstractController
                              EntityManagerInterface $entityManager): Response
     {
         $user = new Professor();
+        $user->setRoles(['ROLE_PROFESSOR']);
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 

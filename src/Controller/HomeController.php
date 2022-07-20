@@ -24,17 +24,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'app_home', methods: ['GET'])]
     public function index(): Response
     {
-      //  if ($theme) {
-         //   $studies = $theme->getStudies()->getValues();
-        //}else{
-      //      return $this->redirectToRoute('app_home');dd($studies);
         $themes = $this->repoThe->findAll();
-        //dd($studies);
+
         $studies = $this->repoStu->findAll();
 
         return $this->render('home/index.html.twig', [
             'themes' => $themes ,
-            'studies' => $studies
+            'studies' => $studies,
         ]);
     }
 

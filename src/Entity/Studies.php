@@ -24,9 +24,6 @@ class Studies
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    #[ORM\ManyToMany(targetEntity: Themes::class, inversedBy: 'studies')]
-    private $studytheme;
-
     #[ORM\OneToMany(mappedBy: 'study', targetEntity: Agenda::class)]
     private $agendas;
 
@@ -34,19 +31,22 @@ class Studies
     #[ORM\JoinColumn(nullable: false)]
     private $studycreator;
 
+    #[ORM\ManyToOne(targetEntity: Themes::class, inversedBy: 'studies')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $studytheme;
+
     public function __construct()
     {
-        $this->studytheme = new ArrayCollection();
         $this->agendas = new ArrayCollection();
+    }
+
+    public function __toString(){
+        return $this->title;
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function __toString(){
-        return $this->title;
     }
 
     public function getTitle(): ?string
@@ -81,30 +81,6 @@ class Studies
     public function setImage(string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Themes>
-     */
-    public function getStudytheme(): Collection
-    {
-        return $this->studytheme;
-    }
-
-    public function addStudytheme(Themes $studytheme): self
-    {
-        if (!$this->studytheme->contains($studytheme)) {
-            $this->studytheme[] = $studytheme;
-        }
-
-        return $this;
-    }
-
-    public function removeStudytheme(Themes $studytheme): self
-    {
-        $this->studytheme->removeElement($studytheme);
 
         return $this;
     }
@@ -150,4 +126,17 @@ class Studies
 
         return $this;
     }
+
+    public function getStudytheme(): ?Themes
+    {
+        return $this->studytheme;
+    }
+
+    public function setStudytheme(?Themes $studytheme): self
+    {
+        $this->studytheme = $studytheme;
+
+        return $this;
+    }
+
 }

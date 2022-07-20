@@ -36,6 +36,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $lastname;
 
     #[ORM\ManyToOne(targetEntity: Professor::class, inversedBy: 'users')]
+    #[ORM\JoinColumn(nullable: true)]
     private $professor;
 
     #[ORM\OneToMany(mappedBy: 'themecreator', targetEntity: Themes::class)]

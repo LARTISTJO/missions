@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Studies;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,28 +40,15 @@ class StudiesRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Studies[] Returns an array of Studies objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('s.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
 
-//    public function findOneBySomeField($value): ?Studies
-//    {
-//        return $this->createQueryBuilder('s')
-//            ->andWhere('s.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    public function findByThemes(): array
+   {
+      $qb = $this->createQueryBuilder('s');
+        $qb->orderBy('s.studytheme', 'ASC');
+         $query = $qb->getQuery();
+
+      return $query->execute();
+
+    }
+
 }
